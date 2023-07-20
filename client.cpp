@@ -90,6 +90,15 @@ int main() {
             }
             case 2:
                 std::cout << " case two";
+                // Ask for order details from the user
+                std::cout << "Enter order ID: ";
+                std::cin >> orderId;
+                std::cout << "Enter order type (buy/sell): ";
+                std::cin >> orderType;
+                std::cout << "Enter order price: ";
+                std::cin >> orderPrice;
+                std::cout << "Enter order quantity: ";
+                std::cin >> orderQuantity;
                 break;
 
             case 3:
