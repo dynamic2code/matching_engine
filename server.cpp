@@ -62,6 +62,19 @@ public:
     void addSellOrder(const Order& order) {
         sellOrders.push_back(order);
     }
+    // Function to process the received data and add the order
+    void processReceivedData(const std::string& receivedData) {
+        Order order = parseOrderData(receivedData);
+
+        // Determine whether it's a buy or sell order and add it accordingly
+        if (order.getType() == "buy") {
+            addBuyOrder(order);
+        } else if (order.getType() == "sell") {
+            addSellOrder(order);
+        } else {
+            std::cout << "Invalid order type: " << order.getType() << std::endl;
+        }
+    }
     void modifyOrder(int orderId, const std::string& orderType, double newPrice, int newQuantity) {
         std::vector<Order>* orders;
 
@@ -239,7 +252,13 @@ int main() {
 
         switch (std::stoi(userOption)) {
             case 1:
+                char buffer[1024]; // Assuming the buffer size is 1024, adjust as needed
+                int bytesReceived;
                 response = "Option 1 selected. Enter new order details.";
+                bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
+
+                std::cout << bytesReceived;
+//                processReceivedData(receivedData);
                 break;
             case 2:
                 response = "Option 2 selected. Enter order ID and new details to modify.";

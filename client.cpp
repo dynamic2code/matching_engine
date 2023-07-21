@@ -80,6 +80,7 @@ int main() {
 
                 // Send order data to the server
                 bytesSent = send(clientSocket, orderData.c_str(), orderData.length(), 0);
+                std::cout<< bytesSent;
                 if (bytesSent != orderData.length()) {
                     std::cerr << "Failed to send order data to the server." << std::endl;
                     close(clientSocket);
